@@ -1,8 +1,8 @@
-import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
-import { cookies } from 'next/headers'
-import Image from 'next/image'
-import Link from 'next/link'
-import LogoutButton from './logout-button'
+import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
+import { cookies } from 'next/headers';
+import Image from 'next/image';
+import Link from 'next/link';
+import LogoutButton from './logout-button';
 
 const resources = [
   {
@@ -26,7 +26,7 @@ const resources = [
     url: 'https://supabase.com/docs/guides/auth/auth-helpers/nextjs',
     icon: 'book',
   },
-]
+];
 
 const examples = [
   { type: 'Client Components', src: 'app/_examples/client-component/page.tsx' },
@@ -35,14 +35,18 @@ const examples = [
   { type: 'Route Handlers', src: 'app/_examples/route-handler.ts' },
   { type: 'Middleware', src: 'app/middleware.ts' },
   { type: 'Protected Routes', src: 'app/_examples/protected/page.tsx' },
-]
+];
 
 export default async function Index() {
-  const supabase = createServerComponentClient({ cookies })
+  const supabase = createServerComponentClient({ cookies });
 
   const {
     data: { user },
-  } = await supabase.auth.getUser()
+  } = await supabase.auth.getUser();
+
+  const { data } = await supabase.auth.getSession();
+
+  console.log({ data });
 
   return (
     <div className="flex-1 flex flex-col max-w-3xl mt-24">
@@ -103,8 +107,7 @@ export default async function Index() {
           <a
             key={title}
             className="grid gap-4 border-t-2 border-neutral-200 py-6 pr-2 group text-neutral-100"
-            href={url}
-          >
+            href={url}>
             <h2 className="font-bold mb-2 group-hover:underline min-h-[42px]">
               {title}
             </h2>
@@ -147,5 +150,5 @@ export default async function Index() {
         ))}
       </div>
     </div>
-  )
+  );
 }
