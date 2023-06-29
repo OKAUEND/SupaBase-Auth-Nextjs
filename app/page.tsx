@@ -3,6 +3,7 @@ import { cookies } from 'next/headers';
 import Image from 'next/image';
 import Link from 'next/link';
 import LogoutButton from './logout-button';
+import { RouteButton } from './button/RouteButton';
 
 const resources = [
   {
@@ -53,7 +54,6 @@ export default async function Index() {
       <h1 className="text-2xl mb-2 flex justify-between">
         <span className="sr-only">Supabase and Next.js Starter Template</span>
       </h1>
-
       <div className="flex border-b py-3 text-sm text-neutral-100">
         <span className="ml-auto">
           {user ? (
@@ -68,7 +68,6 @@ export default async function Index() {
           )}
         </span>
       </div>
-
       <div className="flex gap-8 justify-center mt-12">
         <Image
           src="/supabase.svg"
@@ -91,17 +90,15 @@ export default async function Index() {
         The fastest way to get started building apps with{' '}
         <strong>Supabase</strong> and <strong>Next.js</strong>
       </p>
-
       <div className="flex justify-center mt-16">
         <span className="bg-neutral-100 py-3 px-6 rounded-lg font-mono text-sm text-neutral-900">
           Get started by editing <strong>app/page.tsx</strong>
         </span>
       </div>
-
+      <RouteButton path={'/content'} />
       <p className="text-neutral-100 mt-28 text-lg font-bold text-center">
         Everything you need to started
       </p>
-
       <div className="flex gap-12 h-60 mt-10 mb-16 -mx-12">
         {resources.map(({ title, subtitle, url, icon }) => (
           <a
@@ -124,7 +121,6 @@ export default async function Index() {
           </a>
         ))}
       </div>
-
       <div className="grid gap-3 justify-center mx-auto max-w-lg text-center mt-16">
         <p className="text-neutral-100 text-lg font-bold text-center">
           Examples
@@ -134,7 +130,6 @@ export default async function Index() {
           Supabase client in all the different contexts
         </p>
       </div>
-
       <div className=" text-white mb-24 grid justify-center border-t mt-8">
         {examples.map(({ type, src }) => (
           <div className="" key={type}>
